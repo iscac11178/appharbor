@@ -1,0 +1,161 @@
+﻿a {
+    color: #333;
+    outline: none;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-decoration: underline;
+}
+
+    a:link, a:visited,
+    a:active, a:hover {
+        color: #333;
+    text-align: right;
+}
+
+    a:hover {
+        background-color: #c7d1d6;
+    }
+
+header, footer, hgroup,
+nav, section {
+    display: block;
+}
+
+mark {
+    background-color: #a6dbed;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.clear-fix:after {
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+    color: #000;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.75em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+    h5 a:link, h5 a:visited, h5 a:active {
+        padding: 0;
+        text-decoration: none;
+    }
+
+/* main layout
+----------------------------------------------------------*/
+
+#dpagina {
+    font-family:Verdana;
+    font-size:small;
+    border: thin solid #C0C0C0;
+    width: 1200px;
+    height: 650px;
+    margin: 0 auto;
+}
+
+#dtopo {
+    height: 100px;
+}
+#dnav {
+    border-color: #ff6a00;
+    height: 20px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-width: thin;
+    border-bottom-width: thin;
+    font-size:1em;
+}
+#dconteudos {
+    height: 507px;
+}
+#dfundo {
+    border-style: solid none none none;
+    border-width: thin;
+    border-color: #C0C0C0;
+    height: 20px;
+    background-color:silver;
+    color:white;
+}
+#dlinks {
+    padding-top : 10px;
+    padding-left: 10px;
+    height: 500px;
+    width:250px;
+    float:left;
+}
+#dcentro {
+    padding-top:10px;
+
+    height: 500px;
+    width:940px;
+    float:right;
+}
+
+
+/* login
+----------------------------------------------------------*/
+#login {
+    display: block;
+    font-size: .85em;
+    margin: 0 0 10px;
+    text-align: right;
+}
+
+    #login a {
+        background-color: #d3dce0;
+        margin-left: 10px;
+        margin-right: 3px;
+        padding: 2px 3px;
+        text-decoration: none;
+    }
+
+    #login a.username {
+        background: none;
+        margin-left: 0px;
+        text-decoration: underline;
+    }
+
+    #login ul {
+        margin: 0;
+    }
+
+    #login li {
+        display: inline;
+        list-style: none;
+    }
+
+

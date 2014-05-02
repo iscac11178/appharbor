@@ -1,0 +1,94 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="iscacTransportes.Site" %>
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="Content/Site.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .auto-style2 {
+            width: 100%;
+        }
+        .auto-style3 {
+            width: 241px;
+            text-align: center;
+        }
+        .auto-style4 {
+            width: 120px;
+            height: 68px;
+        }
+        .auto-style5 {
+            color: #FF6600;
+        }
+    </style>
+</head>
+<body>
+    <div id="dpagina">
+    <form id="form1" runat="server">
+        <div id="dtopo">
+
+            <table class="auto-style2">
+                <tr>
+                    <td class="auto-style3" rowspan="4">
+                        <img alt="" class="auto-style4" src="/Imagens/logo.png" /></td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style5" rowspan="2"><strong>Iscac Transportes</strong></td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Aplicação para optimizacao de rotas - Algoritmo Clarke Wright</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+
+        </div>
+        <div id="dnav">
+            <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" Height="20px">
+                <Items>
+                    <asp:MenuItem Text=".: home" Value="New Item" NavigateUrl="~/Default.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text=".: trabalho" Value="New Item" NavigateUrl="~/Trabalho.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text=".: alunos" Value=".: alunos" NavigateUrl="~/Alunos.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text=".: disciplina" Value=".: disciplina" NavigateUrl="~/Disciplina.aspx"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/Login.aspx" Text=".: aceder" Value=".: aceder"></asp:MenuItem>
+                </Items>
+            </asp:Menu>
+        </div>
+        <div id="dconteudos">
+            <div id="dlinks">
+                <asp:TreeView ID="TreeView1" runat="server" Width="187px">
+                    <Nodes>
+                        <asp:TreeNode Text="Destinos" Value="Destinos" NavigateUrl="~/Privado/Default.aspx">
+                            <asp:TreeNode NavigateUrl="~/Privado/insereDestino.aspx" Text="Inserir Novo" Value="Inserir Novo"></asp:TreeNode>
+                            <asp:TreeNode NavigateUrl="~/Privado/listaDestinos.aspx" Text="Listagem" Value="Listagem"></asp:TreeNode>
+                        </asp:TreeNode>
+                        <asp:TreeNode Text="Utilizadores" Value="Utilizadores" NavigateUrl="~/Registar.aspx">
+                        </asp:TreeNode>
+                        <asp:TreeNode Text="Simulações" Value="Simulações"></asp:TreeNode>
+                        <asp:TreeNode Text="Definições" Value="Definições"></asp:TreeNode>
+                    </Nodes>
+                </asp:TreeView>
+            </div>
+            <div id="dcentro">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+                </asp:ContentPlaceHolder>
+            </div>
+            </div>
+        <div id="dfundo">.: Trabalho realizado no ambito da disciplina &quot;Projecto e Desenvolvimento Informático&quot; - Informática de Gestão 2013/2014</div>
+       </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,522 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mnTabelas.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="mnTabelasStoreContainer">
+          <EntitySet Name="Applications" EntityType="mnTabelas.Store.Applications" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Destino" EntityType="mnTabelas.Store.Destino" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Memberships" EntityType="mnTabelas.Store.Memberships" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Profiles" EntityType="mnTabelas.Store.Profiles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Roles" EntityType="mnTabelas.Store.Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="mnTabelas.Store.Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UsersInRoles" EntityType="mnTabelas.Store.UsersInRoles" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="MembershipApplication" Association="mnTabelas.Store.MembershipApplication">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Memberships" EntitySet="Memberships" />
+          </AssociationSet>
+          <AssociationSet Name="MembershipUser" Association="mnTabelas.Store.MembershipUser">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Memberships" EntitySet="Memberships" />
+          </AssociationSet>
+          <AssociationSet Name="RoleApplication" Association="mnTabelas.Store.RoleApplication">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="UserApplication" Association="mnTabelas.Store.UserApplication">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="UserProfile" Association="mnTabelas.Store.UserProfile">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Profiles" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="UsersInRoleRole" Association="mnTabelas.Store.UsersInRoleRole">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UsersInRoles" EntitySet="UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="UsersInRoleUser" Association="mnTabelas.Store.UsersInRoleUser">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersInRoles" EntitySet="UsersInRoles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationName" Type="nvarchar" Nullable="false" MaxLength="235" />
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Destino">
+          <Key>
+            <PropertyRef Name="DestinoID" />
+          </Key>
+          <Property Name="DestinoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rua" Type="nvarchar" MaxLength="50" />
+          <Property Name="CodigoPostal" Type="nvarchar" MaxLength="50" />
+          <Property Name="Localidade" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pais" Type="nvarchar" MaxLength="50" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ordem" Type="nvarchar" MaxLength="50" />
+          <Property Name="Carga" Type="int" />
+        </EntityType>
+        <EntityType Name="Memberships">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordFormat" Type="int" Nullable="false" />
+          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowsStart" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Profiles">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PropertyNames" Type="nvarchar" Nullable="false" />
+          <Property Name="PropertyValueStrings" Type="nvarchar" Nullable="false" />
+          <Property Name="PropertyValueBinary" Type="image" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="MembershipApplication">
+          <End Role="Applications" Type="mnTabelas.Store.Applications" Multiplicity="1" />
+          <End Role="Memberships" Type="mnTabelas.Store.Memberships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Memberships">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MembershipUser">
+          <End Role="Users" Type="mnTabelas.Store.Users" Multiplicity="1" />
+          <End Role="Memberships" Type="mnTabelas.Store.Memberships" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Memberships">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoleApplication">
+          <End Role="Applications" Type="mnTabelas.Store.Applications" Multiplicity="1" />
+          <End Role="Roles" Type="mnTabelas.Store.Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Roles">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserApplication">
+          <End Role="Applications" Type="mnTabelas.Store.Applications" Multiplicity="1" />
+          <End Role="Users" Type="mnTabelas.Store.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserProfile">
+          <End Role="Users" Type="mnTabelas.Store.Users" Multiplicity="1" />
+          <End Role="Profiles" Type="mnTabelas.Store.Profiles" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Profiles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersInRoleRole">
+          <End Role="Roles" Type="mnTabelas.Store.Roles" Multiplicity="1" />
+          <End Role="UsersInRoles" Type="mnTabelas.Store.UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersInRoleUser">
+          <End Role="Users" Type="mnTabelas.Store.Users" Multiplicity="1" />
+          <End Role="UsersInRoles" Type="mnTabelas.Store.UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mnTabelas" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbTabelas" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Applications" EntityType="mnTabelas.Applications" />
+          <EntitySet Name="Destino" EntityType="mnTabelas.Destino" />
+          <EntitySet Name="Memberships" EntityType="mnTabelas.Memberships" />
+          <EntitySet Name="Profiles" EntityType="mnTabelas.Profiles" />
+          <EntitySet Name="Roles" EntityType="mnTabelas.Roles" />
+          <EntitySet Name="Users" EntityType="mnTabelas.Users" />
+          <AssociationSet Name="MembershipApplication" Association="mnTabelas.MembershipApplication">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Memberships" EntitySet="Memberships" />
+          </AssociationSet>
+          <AssociationSet Name="RoleApplication" Association="mnTabelas.RoleApplication">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="UserApplication" Association="mnTabelas.UserApplication">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="MembershipUser" Association="mnTabelas.MembershipUser">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Memberships" EntitySet="Memberships" />
+          </AssociationSet>
+          <AssociationSet Name="UserProfile" Association="mnTabelas.UserProfile">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Profiles" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="UsersInRoles" Association="mnTabelas.UsersInRoles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="235" Unicode="true" FixedLength="false" />
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Memberships" Relationship="mnTabelas.MembershipApplication" FromRole="Applications" ToRole="Memberships" />
+          <NavigationProperty Name="Roles" Relationship="mnTabelas.RoleApplication" FromRole="Applications" ToRole="Roles" />
+          <NavigationProperty Name="Users" Relationship="mnTabelas.UserApplication" FromRole="Applications" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Destino">
+          <Key>
+            <PropertyRef Name="DestinoID" />
+          </Key>
+          <Property Name="DestinoID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Nome" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Rua" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Localidade" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Pais" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Latitude" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Longitude" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Ordem" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Carga" />
+        </EntityType>
+        <EntityType Name="Memberships">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordFormat" Type="Int32" Nullable="false" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordQuestion" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordAnswer" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FailedPasswordAttemptCount" Type="Int32" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowsStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Applications" Relationship="mnTabelas.MembershipApplication" FromRole="Memberships" ToRole="Applications" />
+          <NavigationProperty Name="Users" Relationship="mnTabelas.MembershipUser" FromRole="Memberships" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Profiles">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PropertyNames" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="PropertyValueStrings" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="PropertyValueBinary" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="mnTabelas.UserProfile" FromRole="Profiles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Applications" Relationship="mnTabelas.RoleApplication" FromRole="Roles" ToRole="Applications" />
+          <NavigationProperty Name="Users" Relationship="mnTabelas.UsersInRoles" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Applications" Relationship="mnTabelas.UserApplication" FromRole="Users" ToRole="Applications" />
+          <NavigationProperty Name="Memberships" Relationship="mnTabelas.MembershipUser" FromRole="Users" ToRole="Memberships" />
+          <NavigationProperty Name="Profiles" Relationship="mnTabelas.UserProfile" FromRole="Users" ToRole="Profiles" />
+          <NavigationProperty Name="Roles" Relationship="mnTabelas.UsersInRoles" FromRole="Users" ToRole="Roles" />
+        </EntityType>
+        <Association Name="MembershipApplication">
+          <End Role="Applications" Type="mnTabelas.Applications" Multiplicity="1" />
+          <End Role="Memberships" Type="mnTabelas.Memberships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Memberships">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoleApplication">
+          <End Role="Applications" Type="mnTabelas.Applications" Multiplicity="1" />
+          <End Role="Roles" Type="mnTabelas.Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Roles">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserApplication">
+          <End Role="Applications" Type="mnTabelas.Applications" Multiplicity="1" />
+          <End Role="Users" Type="mnTabelas.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MembershipUser">
+          <End Role="Users" Type="mnTabelas.Users" Multiplicity="1" />
+          <End Role="Memberships" Type="mnTabelas.Memberships" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Memberships">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserProfile">
+          <End Role="Users" Type="mnTabelas.Users" Multiplicity="1" />
+          <End Role="Profiles" Type="mnTabelas.Profiles" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Profiles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersInRoles">
+          <End Role="Roles" Type="mnTabelas.Roles" Multiplicity="*" />
+          <End Role="Users" Type="mnTabelas.Users" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mnTabelasStoreContainer" CdmEntityContainer="dbTabelas">
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="mnTabelas.Applications">
+              <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Destino">
+            <EntityTypeMapping TypeName="mnTabelas.Destino">
+              <MappingFragment StoreEntitySet="Destino">
+                <ScalarProperty Name="Carga" ColumnName="Carga" />
+                <ScalarProperty Name="DestinoID" ColumnName="DestinoID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Rua" ColumnName="Rua" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="Localidade" ColumnName="Localidade" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Ordem" ColumnName="Ordem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Memberships">
+            <EntityTypeMapping TypeName="mnTabelas.Memberships">
+              <MappingFragment StoreEntitySet="Memberships">
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowsStart" ColumnName="FailedPasswordAnswerAttemptWindowsStart" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="mnTabelas.Profiles">
+              <MappingFragment StoreEntitySet="Profiles">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PropertyNames" ColumnName="PropertyNames" />
+                <ScalarProperty Name="PropertyValueStrings" ColumnName="PropertyValueStrings" />
+                <ScalarProperty Name="PropertyValueBinary" ColumnName="PropertyValueBinary" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="mnTabelas.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="mnTabelas.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UsersInRoles" TypeName="mnTabelas.UsersInRoles" StoreEntitySet="UsersInRoles">
+            <EndProperty Name="Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
