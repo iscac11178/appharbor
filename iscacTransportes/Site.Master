@@ -79,7 +79,7 @@
                         <asp:TreeNode Text="Simulações" Value="Simulações">
                             <asp:TreeNode Text="Ver Resultados" Value="Ver Resultados" NavigateUrl="~/Privado/verResultados.aspx"></asp:TreeNode>
                         </asp:TreeNode>
-                        <asp:TreeNode Text="Definições" Value="Definições"></asp:TreeNode>
+                        <asp:TreeNode Text="Download" Value="Definições" NavigateUrl="~/publish/setup.exe"></asp:TreeNode>
                     </Nodes>
                 </asp:TreeView>
             </div>

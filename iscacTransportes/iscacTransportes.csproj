@@ -336,6 +336,7 @@
     <Content Include="packages.config" />
     <Content Include="Content\grand_gray\interface\OboutTextBox\images\Thumbs.db" />
     <Content Include="Content\grand_gray\Thumbs.db" />
+    <Content Include="publish\setup.exe" />
     <Content Include="WebMapsVE_Readme.txt" />
     <EntityDeploy Include="Modelo\ModeloDados.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -355,6 +356,13 @@
       <LastGenOutput>ModeloDados.cs</LastGenOutput>
     </Content>
     <Content Include="ClassDiagram1.cd" />
+    <Content Include="publish\appIscacTrans.application" />
+    <Content Include="publish\Application Files\appIscacTrans_1_0_0_0\appIscacTrans.application" />
+    <Content Include="publish\Application Files\appIscacTrans_1_0_0_0\appIscacTrans.exe.config.deploy" />
+    <Content Include="publish\Application Files\appIscacTrans_1_0_0_0\appIscacTrans.exe.deploy" />
+    <Content Include="publish\Application Files\appIscacTrans_1_0_0_0\appIscacTrans.exe.manifest" />
+    <Content Include="publish\Application Files\appIscacTrans_1_0_0_0\GoogleMapsApi.dll.deploy" />
+    <Content Include="publish\Application Files\appIscacTrans_1_0_0_0\Logo Projeto PDI.png.deploy" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Privado\criarSimulacao.aspx" />
     <Content Include="Privado\Default.aspx" />
