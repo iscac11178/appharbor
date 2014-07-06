@@ -14,6 +14,11 @@ namespace iscacTransportes.Modelo
     
     public partial class Destino
     {
+        public Destino()
+        {
+            this.Caminho = new HashSet<Caminho>();
+        }
+    
         public int DestinoID { get; set; }
         public string UserName { get; set; }
         public string Nome { get; set; }
@@ -23,7 +28,9 @@ namespace iscacTransportes.Modelo
         public string Pais { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
-        public string Ordem { get; set; }
+        public Nullable<int> Ordem { get; set; }
         public Nullable<int> Carga { get; set; }
+    
+        public virtual ICollection<Caminho> Caminho { get; set; }
     }
 }

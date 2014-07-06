@@ -12,11 +12,16 @@ namespace iscacTransportes.Privado
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try { 
+
 
             //this.DetailsView1.FindControl("txtNome") = "hello";
             (DetailsView1.FindControl("TextBox1") as TextBox).Text = Membership.GetUser().UserName;
             (DetailsView1.FindControl("TextBox1") as TextBox).Enabled = false;
-
+                }
+                        catch (Exception x) {
+                Response.Redirect("/login.aspx");
+            }
         }
 
         protected void DetailsView1_PageIndexChanging(object sender, DetailsViewPageEventArgs e)

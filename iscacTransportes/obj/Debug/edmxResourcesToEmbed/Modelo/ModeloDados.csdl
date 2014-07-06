@@ -31,6 +31,15 @@
       <End Role="Roles" EntitySet="Roles" />
       <End Role="Users" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="Distancia" EntityType="mnTabelas.Distancia" />
+    <EntitySet Name="RotaFinal" EntityType="mnTabelas.RotaFinal" />
+    <EntitySet Name="sysdiagrams" EntityType="mnTabelas.sysdiagrams" />
+    <EntitySet Name="Caminho" EntityType="mnTabelas.Caminho" />
+    <EntitySet Name="viewCaminho" EntityType="mnTabelas.viewCaminho" />
+    <AssociationSet Name="FK_Caminho_Destino" Association="mnTabelas.FK_Caminho_Destino">
+      <End Role="Destino" EntitySet="Destino" />
+      <End Role="Caminho" EntitySet="Caminho" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Applications">
     <Key>
@@ -56,8 +65,9 @@
     <Property Name="Pais" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="Latitude" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="Longitude" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Ordem" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Ordem" Type="Int32" />
     <Property Type="Int32" Name="Carga" />
+    <NavigationProperty Name="Caminho" Relationship="mnTabelas.FK_Caminho_Destino" FromRole="Destino" ToRole="Caminho" />
   </EntityType>
   <EntityType Name="Memberships">
     <Key>
@@ -184,5 +194,74 @@
   <Association Name="UsersInRoles">
     <End Role="Roles" Type="mnTabelas.Roles" Multiplicity="*" />
     <End Role="Users" Type="mnTabelas.Users" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Distancia">
+    <Key>
+      <PropertyRef Name="DistanciaID" />
+    </Key>
+    <Property Type="Int32" Name="DistanciaID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="OrigemID" />
+    <Property Type="Int32" Name="DestinoID" />
+    <Property Type="Decimal" Name="Distancia1" Precision="10" Scale="3" />
+    <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="Carga" />
+  </EntityType>
+  <EntityType Name="RotaFinal">
+    <Key>
+      <PropertyRef Name="RotaID" />
+    </Key>
+    <Property Type="Int32" Name="RotaID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="Antecessor" />
+    <Property Type="Int32" Name="Sucessor" />
+    <Property Type="Decimal" Name="Quantidade" Precision="12" Scale="3" />
+    <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="principal_id" Nullable="false" />
+    <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="version" />
+    <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Caminho">
+    <Key>
+      <PropertyRef Name="CaminhoID" />
+    </Key>
+    <Property Type="Int32" Name="CaminhoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="RotaNumero" />
+    <Property Type="Int32" Name="DestinoFK" />
+    <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Destino" Relationship="mnTabelas.FK_Caminho_Destino" FromRole="Caminho" ToRole="Destino" />
+  </EntityType>
+  <EntityType Name="viewCaminho">
+    <Key>
+      <PropertyRef Name="CaminhoID" />
+    </Key>
+    <Property Type="Int32" Name="CaminhoID" Nullable="false" />
+    <Property Type="Int32" Name="RotaNumero" />
+    <Property Type="Int32" Name="DestinoFK" />
+    <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Nome" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Rua" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CodigoPostal" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Localidade" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Ordem" />
+    <Property Type="String" Name="Pais" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Carga" />
+  </EntityType>
+  <Association Name="FK_Caminho_Destino">
+    <End Type="mnTabelas.Destino" Role="Destino" Multiplicity="0..1" />
+    <End Type="mnTabelas.Caminho" Role="Caminho" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Destino">
+        <PropertyRef Name="DestinoID" />
+      </Principal>
+      <Dependent Role="Caminho">
+        <PropertyRef Name="DestinoFK" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

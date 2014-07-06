@@ -34,4 +34,8 @@ C:\Users\developer\documents\visual studio 2012\Projects\iscacTransportes\iscacT
 C:\Users\developer\documents\visual studio 2012\Projects\iscacTransportes\iscacTransportes\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Users\developer\documents\visual studio 2012\Projects\iscacTransportes\iscacTransportes\obj\Debug\iscacTransportes.dll
 C:\Users\developer\documents\visual studio 2012\Projects\iscacTransportes\iscacTransportes\obj\Debug\iscacTransportes.pdb
-C:\Users\developer\documents\visual studio 2012\Projects\iscacTransportes\iscacTransportes\obj\Debug\iscacTransportes.csprojResolveAssemblyReference.cache
+C:\Users\developer\Documents\Visual Studio 2012\Projects\iscacTransportes\iscacTransportes\bin\Google.Maps.dll
+C:\Users\developer\Documents\Visual Studio 2012\Projects\iscacTransportes\iscacTransportes\bin\Newtonsoft.Json.dll
+C:\Users\developer\Documents\Visual Studio 2012\Projects\iscacTransportes\iscacTransportes\bin\Simplovation.Web.Maps.VE.dll
+C:\Users\developer\Documents\Visual Studio 2012\Projects\iscacTransportes\iscacTransportes\bin\Newtonsoft.Json.xml
+C:\Users\developer\Documents\Visual Studio 2012\Projects\iscacTransportes\iscacTransportes\obj\Debug\iscacTransportes.csprojResolveAssemblyReference.cache

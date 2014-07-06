@@ -38,7 +38,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GMaps, Version=4.1.0.5, Culture=neutral, PublicKeyToken=564d55b144e7aa5a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\GMaps.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Maps">
+      <HintPath>..\packages\gmaps-api-net.0.11.1.0\lib\net\Google.Maps.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\gmaps-api-net.0.11.1.0\lib\net\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="obout_Grid_NET, Version=7.0.9.0, Culture=neutral, PublicKeyToken=5ddc49d3b53e3f98, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Controls\obout Suite for ASP.NET 3.5 and up\obout_Grid_NET.dll</HintPath>
@@ -50,6 +60,9 @@
     <Reference Include="obout_TextMenu, Version=3.12.12.4, Culture=neutral, PublicKeyToken=230fff0683fbecad, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Controls\obout Suite for ASP.NET 3.5 and up\obout_TextMenu.dll</HintPath>
+    </Reference>
+    <Reference Include="Simplovation.Web.Maps.VE">
+      <HintPath>..\packages\Web.Maps.VE.4.00.00\lib\net\Simplovation.Web.Maps.VE.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -140,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Alunos.aspx" />
+    <Content Include="bin\GMaps.dll" />
     <Content Include="Content\grand_gray\asc.gif" />
     <Content Include="Content\grand_gray\desc.gif" />
     <Content Include="Content\grand_gray\details_btn_close.gif" />
@@ -322,6 +336,7 @@
     <Content Include="packages.config" />
     <Content Include="Content\grand_gray\interface\OboutTextBox\images\Thumbs.db" />
     <Content Include="Content\grand_gray\Thumbs.db" />
+    <Content Include="WebMapsVE_Readme.txt" />
     <EntityDeploy Include="Modelo\ModeloDados.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModeloDados.Designer.cs</LastGenOutput>
@@ -339,10 +354,14 @@
       <DependentUpon>ModeloDados.edmx</DependentUpon>
       <LastGenOutput>ModeloDados.cs</LastGenOutput>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Privado\criarSimulacao.aspx" />
     <Content Include="Privado\Default.aspx" />
+    <Content Include="Privado\detalhesDestino.aspx" />
     <Content Include="Privado\insereDestino.aspx" />
     <Content Include="Privado\listaDestinos.aspx" />
+    <Content Include="Privado\verResultados.aspx" />
     <Content Include="Registar.aspx" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -372,7 +391,9 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Trabalho.aspx" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\_references.js" />
@@ -423,7 +444,13 @@
     <Compile Include="Modelo\Applications.cs">
       <DependentUpon>ModeloDados.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\Caminho.cs">
+      <DependentUpon>ModeloDados.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\Destino.cs">
+      <DependentUpon>ModeloDados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Distancia.cs">
       <DependentUpon>ModeloDados.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\Memberships.cs">
@@ -450,8 +477,24 @@
     <Compile Include="Modelo\Roles.cs">
       <DependentUpon>ModeloDados.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\RotaFinal.cs">
+      <DependentUpon>ModeloDados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\sysdiagrams.cs">
+      <DependentUpon>ModeloDados.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\Users.cs">
       <DependentUpon>ModeloDados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\viewCaminho.cs">
+      <DependentUpon>ModeloDados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\criarSimulacao.aspx.cs">
+      <DependentUpon>criarSimulacao.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\criarSimulacao.aspx.designer.cs">
+      <DependentUpon>criarSimulacao.aspx</DependentUpon>
     </Compile>
     <Compile Include="Privado\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -459,6 +502,13 @@
     </Compile>
     <Compile Include="Privado\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\detalhesDestino.aspx.cs">
+      <DependentUpon>detalhesDestino.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\detalhesDestino.aspx.designer.cs">
+      <DependentUpon>detalhesDestino.aspx</DependentUpon>
     </Compile>
     <Compile Include="Privado\insereDestino.aspx.cs">
       <DependentUpon>insereDestino.aspx</DependentUpon>
@@ -473,6 +523,13 @@
     </Compile>
     <Compile Include="Privado\listaDestinos.aspx.designer.cs">
       <DependentUpon>listaDestinos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Privado\verResultados.aspx.cs">
+      <DependentUpon>verResultados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Privado\verResultados.aspx.designer.cs">
+      <DependentUpon>verResultados.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registar.aspx.cs">
@@ -513,6 +570,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

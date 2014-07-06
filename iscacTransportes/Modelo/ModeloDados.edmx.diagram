@@ -4,19 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="687d8cc9969442ffadddcc8d6895f5ea" Name="Diagram1" ZoomLevel="76">
+      <Diagram DiagramId="687d8cc9969442ffadddcc8d6895f5ea" Name="Diagram1" ZoomLevel="48">
         <EntityTypeShape EntityType="mnTabelas.Applications" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mnTabelas.Destino" Width="1.5" PointX="7.375" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="mnTabelas.Memberships" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="mnTabelas.Profiles" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="mnTabelas.Roles" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="mnTabelas.Users" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="mnTabelas.Destino" Width="1.5" PointX="12.375" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mnTabelas.Memberships" Width="1.5" PointX="4" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mnTabelas.Profiles" Width="1.5" PointX="7.375" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="mnTabelas.Roles" Width="1.5" PointX="2.875" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mnTabelas.Users" Width="1.5" PointX="7.25" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="mnTabelas.MembershipApplication" ManuallyRouted="false" />
         <AssociationConnector Association="mnTabelas.RoleApplication" ManuallyRouted="false" />
         <AssociationConnector Association="mnTabelas.UserApplication" ManuallyRouted="false" />
         <AssociationConnector Association="mnTabelas.MembershipUser" ManuallyRouted="false" />
         <AssociationConnector Association="mnTabelas.UserProfile" ManuallyRouted="false" />
-        <AssociationConnector Association="mnTabelas.UsersInRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="mnTabelas.UsersInRoles" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="mnTabelas.Distancia" Width="1.5" PointX="10.125" PointY="4.375" />
+        <EntityTypeShape EntityType="mnTabelas.RotaFinal" Width="1.5" PointX="7.375" PointY="9.5" />
+        <EntityTypeShape EntityType="mnTabelas.sysdiagrams" Width="1.5" PointX="0.018040945761856133" PointY="20.843506465127462" />
+        <EntityTypeShape EntityType="mnTabelas.Caminho" Width="1.5" PointX="12.75" PointY="8.375" />
+        <EntityTypeShape EntityType="mnTabelas.viewCaminho" Width="1.5" PointX="10.125" PointY="7.75" />
+        <AssociationConnector Association="mnTabelas.FK_Caminho_Destino" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

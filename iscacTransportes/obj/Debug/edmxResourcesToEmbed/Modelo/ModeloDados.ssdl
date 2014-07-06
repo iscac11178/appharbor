@@ -2,12 +2,35 @@
 <Schema Namespace="mnTabelas.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="mnTabelasStoreContainer">
     <EntitySet Name="Applications" EntityType="mnTabelas.Store.Applications" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Caminho" EntityType="mnTabelas.Store.Caminho" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Destino" EntityType="mnTabelas.Store.Destino" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Distancia" EntityType="mnTabelas.Store.Distancia" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Memberships" EntityType="mnTabelas.Store.Memberships" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Profiles" EntityType="mnTabelas.Store.Profiles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Roles" EntityType="mnTabelas.Store.Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RotaFinal" EntityType="mnTabelas.Store.RotaFinal" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="mnTabelas.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Users" EntityType="mnTabelas.Store.Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UsersInRoles" EntityType="mnTabelas.Store.UsersInRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="viewCaminho" EntityType="mnTabelas.Store.viewCaminho" store:Type="Views" store:Schema="dbo" store:Name="viewCaminho">
+      <DefiningQuery>SELECT 
+      [viewCaminho].[CaminhoID] AS [CaminhoID], 
+      [viewCaminho].[RotaNumero] AS [RotaNumero], 
+      [viewCaminho].[DestinoFK] AS [DestinoFK], 
+      [viewCaminho].[UserName] AS [UserName], 
+      [viewCaminho].[Nome] AS [Nome], 
+      [viewCaminho].[Rua] AS [Rua], 
+      [viewCaminho].[CodigoPostal] AS [CodigoPostal], 
+      [viewCaminho].[Localidade] AS [Localidade], 
+      [viewCaminho].[Ordem] AS [Ordem], 
+      [viewCaminho].[Pais] AS [Pais], 
+      [viewCaminho].[Carga] AS [Carga]
+      FROM [dbo].[viewCaminho] AS [viewCaminho]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Caminho_Destino" Association="mnTabelas.Store.FK_Caminho_Destino">
+      <End Role="Destino" EntitySet="Destino" />
+      <End Role="Caminho" EntitySet="Caminho" />
+    </AssociationSet>
     <AssociationSet Name="MembershipApplication" Association="mnTabelas.Store.MembershipApplication">
       <End Role="Applications" EntitySet="Applications" />
       <End Role="Memberships" EntitySet="Memberships" />
@@ -45,6 +68,15 @@
     <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="256" />
   </EntityType>
+  <EntityType Name="Caminho">
+    <Key>
+      <PropertyRef Name="CaminhoID" />
+    </Key>
+    <Property Name="CaminhoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RotaNumero" Type="int" />
+    <Property Name="DestinoFK" Type="int" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Destino">
     <Key>
       <PropertyRef Name="DestinoID" />
@@ -58,7 +90,18 @@
     <Property Name="Pais" Type="nvarchar" MaxLength="50" />
     <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
     <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
-    <Property Name="Ordem" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ordem" Type="int" />
+    <Property Name="Carga" Type="int" />
+  </EntityType>
+  <EntityType Name="Distancia">
+    <Key>
+      <PropertyRef Name="DistanciaID" />
+    </Key>
+    <Property Name="DistanciaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="OrigemID" Type="int" />
+    <Property Name="DestinoID" Type="int" />
+    <Property Name="Distancia" Type="decimal" Precision="10" Scale="3" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
     <Property Name="Carga" Type="int" />
   </EntityType>
   <EntityType Name="Memberships">
@@ -104,6 +147,26 @@
     <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
     <Property Name="Description" Type="nvarchar" MaxLength="256" />
   </EntityType>
+  <EntityType Name="RotaFinal">
+    <Key>
+      <PropertyRef Name="RotaID" />
+    </Key>
+    <Property Name="RotaID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Antecessor" Type="int" />
+    <Property Name="Sucessor" Type="int" />
+    <Property Name="Quantidade" Type="decimal" Precision="12" Scale="3" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="UserId" />
@@ -122,6 +185,37 @@
     <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'db4ef6f3ef4c204f119101a31b0151ff11.dbo.viewCaminho' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="viewCaminho">
+    <Key>
+      <PropertyRef Name="CaminhoID" />
+    </Key>
+    <Property Name="CaminhoID" Type="int" Nullable="false" />
+    <Property Name="RotaNumero" Type="int" />
+    <Property Name="DestinoFK" Type="int" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Nome" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rua" Type="nvarchar" MaxLength="50" />
+    <Property Name="CodigoPostal" Type="nvarchar" MaxLength="50" />
+    <Property Name="Localidade" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ordem" Type="int" />
+    <Property Name="Pais" Type="nvarchar" MaxLength="50" />
+    <Property Name="Carga" Type="int" />
+  </EntityType>
+  <Association Name="FK_Caminho_Destino">
+    <End Role="Destino" Type="mnTabelas.Store.Destino" Multiplicity="0..1" />
+    <End Role="Caminho" Type="mnTabelas.Store.Caminho" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Destino">
+        <PropertyRef Name="DestinoID" />
+      </Principal>
+      <Dependent Role="Caminho">
+        <PropertyRef Name="DestinoFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="MembershipApplication">
     <End Role="Applications" Type="mnTabelas.Store.Applications" Multiplicity="1" />
     <End Role="Memberships" Type="mnTabelas.Store.Memberships" Multiplicity="*" />

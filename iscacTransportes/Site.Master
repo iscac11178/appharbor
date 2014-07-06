@@ -76,7 +76,9 @@
                         </asp:TreeNode>
                         <asp:TreeNode Text="Utilizadores" Value="Utilizadores" NavigateUrl="~/Registar.aspx">
                         </asp:TreeNode>
-                        <asp:TreeNode Text="Simulações" Value="Simulações"></asp:TreeNode>
+                        <asp:TreeNode Text="Simulações" Value="Simulações">
+                            <asp:TreeNode Text="Ver Resultados" Value="Ver Resultados" NavigateUrl="~/Privado/verResultados.aspx"></asp:TreeNode>
+                        </asp:TreeNode>
                         <asp:TreeNode Text="Definições" Value="Definições"></asp:TreeNode>
                     </Nodes>
                 </asp:TreeView>

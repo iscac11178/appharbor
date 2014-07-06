@@ -31,5 +31,10 @@ namespace iscacTransportes.Modelo
         public DbSet<Profiles> Profiles { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<Distancia> Distancia { get; set; }
+        public DbSet<RotaFinal> RotaFinal { get; set; }
+        public DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public DbSet<Caminho> Caminho { get; set; }
+        public DbSet<viewCaminho> viewCaminho { get; set; }
     }
 }
