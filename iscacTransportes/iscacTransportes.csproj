@@ -363,6 +363,7 @@
     <Content Include="publish\Application Files\appIscacTrans_1_0_0_0\appIscacTrans.exe.manifest" />
     <Content Include="publish\Application Files\appIscacTrans_1_0_0_0\GoogleMapsApi.dll.deploy" />
     <Content Include="publish\Application Files\appIscacTrans_1_0_0_0\Logo Projeto PDI.png.deploy" />
+    <Content Include="publish\setup.zip" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Privado\criarSimulacao.aspx" />
     <Content Include="Privado\Default.aspx" />
